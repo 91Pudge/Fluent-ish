@@ -1,18 +1,32 @@
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Link,
+  Navigate
+} from "react-router-dom";
 import Landing from "./pages/Landing";
 import Dashboard from "./pages/Dashboard";
 import Account from "./pages/Account";
 import Navbar from "./component/Navbar";
+import Login from "./component/Login";
+import SignUp from "./component/Signup";
+import "./App";
+import { UserAuthContextProvider } from "./context/UserAuthContext";
 
 function App() {
   return (
     <Router>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Landing />}></Route>
-        <Route path="/Dashboard" element={<Dashboard />}></Route>
-        <Route path="/Account" element={<Account />}></Route>
-      </Routes>
+      <UserAuthContextProvider>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/Account" element={<Account />} />
+          <Route path="/Dashboard" element={<Dashboard />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+        </Routes>
+      </UserAuthContextProvider>
     </Router>
   );
 }
