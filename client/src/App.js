@@ -12,6 +12,7 @@ import Navbar from "./component/Navbar";
 import Login from "./component/Login";
 import SignUp from "./component/Signup";
 import "./App";
+import ProtectedRoute from "./context/ProtectRoute";
 import { UserAuthContextProvider } from "./context/UserAuthContext";
 
 function App() {
@@ -21,8 +22,24 @@ function App() {
       <UserAuthContextProvider>
         <Routes>
           <Route path="/" element={<Landing />} />
-          <Route path="/Account" element={<Account />} />
-          <Route path="/Dashboard" element={<Dashboard />} />
+
+          <Route
+            path="/Account"
+            element={
+              <ProtectedRoute>
+                <Account />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
         </Routes>
