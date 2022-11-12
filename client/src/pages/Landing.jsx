@@ -1,29 +1,18 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { Link, Navigate } from "react-router-dom";
 
 const Landing = () => {
   return (
-    <div className="ui container center">
-      <Form>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
+    <div>
+      <h1>Welcome to Fluent-ish </h1>
+      <h2>Sign in or register for a new account </h2>
+      <Link to="login">
+        <Button>Sign in</Button>
+      </Link>
+      <Link to="signup">
+        <Button>Register</Button>
+      </Link>
     </div>
   );
 };
