@@ -7,7 +7,16 @@ import {
   GoogleAuthProvider,
   signInWithPopup
 } from "firebase/auth";
-import { auth } from "../firebase-config";
+import {
+  getFirestore,
+  query,
+  getDocs,
+  collection,
+  where,
+  addDoc,
+  orderBy
+} from "firebase/firestore";
+import { auth, db } from "../firebase-config";
 
 const userAuthContext = createContext();
 
@@ -15,11 +24,27 @@ export function UserAuthContextProvider({ children }) {
   const [user, setUser] = useState({});
 
   function logIn(email, password) {
+    console.log("email", email);
     return signInWithEmailAndPassword(auth, email, password);
   }
-  function signUp(email, password) {
-    return createUserWithEmailAndPassword(auth, email, password);
-  }
+  const signUp = async (email, password) => {
+    try {
+      const res = await createUserWithEmailAndPassword(auth, email, password);
+      const user = res.user;
+      // await updateProfile(auth.currentUser, { displayName: name });
+      await addDoc(collection(db, "users"), {
+        uid: user.uid,
+
+        authProvider: "local",
+        email,
+        created_at: new Date()
+      });
+    } catch (err) {
+      // console.error(err);
+      if (err.message === "Firebase: Error (auth/email-already-in-use).")
+        alert("This email is already in use.");
+    }
+  };
   function logOut() {
     return signOut(auth);
   }
