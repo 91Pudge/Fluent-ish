@@ -19,7 +19,7 @@ const Login = () => {
       await logIn(email, password);
       navigate("/dashboard");
     } catch (error) {
-      setError(error);
+      setError(error.message);
     }
   };
 
@@ -27,15 +27,15 @@ const Login = () => {
     e.preventDefault();
     try {
       await googleSignIn();
-      navigate("/home");
+      navigate("/dashboard");
     } catch (error) {
       console.log(error.message);
     }
   };
   return (
     <>
-      <div className="p-4 box">
-        <h2 className="mb-3">Firebase Auth Login</h2>
+      <div className="p-4 m-auto w-50">
+        <h2 className="mb-3 text-center"> Login</h2>
         {error && <Alert variant="danger">{error}</Alert>}
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -52,8 +52,8 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </Form.Group>
-          <div className="d-grid gap-2">
-            <Button variant="primary" type="Submit">
+          <div className="d-grid gap-2 ">
+            <Button className="btn-dark" variant="primary" type="Submit">
               Log In
             </Button>
           </div>
@@ -61,13 +61,13 @@ const Login = () => {
         <hr />
         <div>
           <GoogleButton
-            className="g-btn"
+            className="g-btn w-75  m-auto"
             type="dark"
             onClick={handleGoogleSignIn}
           />
         </div>
       </div>
-      <div className="p-4 box mt-3 text-center">
+      <div className="p-4 box  text-center">
         Don't have an account? <Link to="/signup">Sign up</Link>
       </div>
     </>
