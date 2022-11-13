@@ -22,7 +22,7 @@ const Dashboard = () => {
         {user && user.email}
       </div>
       <div className="d-grid gap-2 p-2">
-        <Button variant="primary" onClick={handleLogout}>
+        <Button className="btn-dark" variant="primary" onClick={handleLogout}>
           Log out
         </Button>
       </div>

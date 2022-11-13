@@ -22,8 +22,8 @@ const Account = () => {
         {user && user.displayName}
       </div>
       <div className="d-grid gap-2 p-2">
-        <Button variant="primary" onClick={handleLogout}>
-          Log outhbjjkbjhbjk
+        <Button className="btn-dark" variant="primary" onClick={handleLogout}>
+          Log
         </Button>
       </div>
     </>
