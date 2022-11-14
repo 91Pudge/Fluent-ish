@@ -24,7 +24,7 @@ function App() {
           <Route path="/" element={<Landing />} />
 
           <Route
-            path="/Account"
+            path="/account"
             element={
               <ProtectedRoute>
                 <Account />
