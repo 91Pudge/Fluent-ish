@@ -16,7 +16,7 @@ const Account = () => {
     }
   };
   return (
-    <>
+    <div className="p-4 m-auto w-50">
       <div className="p-4 text-center">
         This your account <br />
         {user && user.displayName}
@@ -26,7 +26,7 @@ const Account = () => {
           Log
         </Button>
       </div>
-    </>
+    </div>
   );
 };
 
