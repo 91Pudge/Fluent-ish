@@ -34,8 +34,6 @@ export function UserAuthContextProvider({ children }) {
       // await updateProfile(auth.currentUser, { displayName: name });
       await addDoc(collection(db, "users"), {
         uid: user.uid,
-
-        authProvider: "local",
         email,
         created_at: new Date()
       });
