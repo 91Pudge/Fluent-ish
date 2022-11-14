@@ -15,7 +15,11 @@ const Wordlist = ({ getWordId }) => {
 
   return (
     <div className="p-4 m-auto table-responsive">
-      <div className="mb-2 "></div>
+      <div className="mb-2 ">
+        <Button variant="dark edit" onClick={getWords}>
+          Refresh List
+        </Button>
+      </div>
       <Table className="" striped bordered hover size="sm">
         <thead>
           <tr>
