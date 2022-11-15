@@ -1,25 +1,40 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 const Navbar = () => {
+  const location = useLocation();
+
   return (
     <div>
-      <ul>
-        <li>
-          <Link to="/">Landing</Link>
-        </li>
-        <li>
-          <Link to="/Dashboard">Dashboard(Protected)</Link>
-        </li>
-        <li>
-          <Link to="/Account">Account(Protected)</Link>
-        </li>
-        <li>
-          <Link to="/login">Login</Link>
-        </li>
-        <li>
-          <Link to="/signup">Signup</Link>
-        </li>
-      </ul>
+      <nav className="navbar  navbar-light bg-success p-1">
+        <Link className="navbar-brand  text-white " to="/dashboard">
+          Fluent-ish
+        </Link>
+
+        {location.pathname === "/dashboard" ? (
+          <Link to="/account">
+            <Button className="btn-dark">Account</Button>
+          </Link>
+        ) : null}
+        {location.pathname === "/account" ? (
+          <Link to="/dashboard">
+            <Button className="btn btn-dark">Dashboard</Button>
+          </Link>
+        ) : null}
+        {location.pathname === "/login" || "/signup" ? null : (
+          <Link to="/login">
+            <Button className="btn btn-dark">Login</Button>
+          </Link>
+        )}
+
+        {location.pathname === "/signup" || "/login" ? null : (
+          <Link to="/signup">
+            <Button className="btn btn-dark">Signup</Button>
+          </Link>
+        )}
+
+        <ul></ul>
+      </nav>
     </div>
   );
 };
