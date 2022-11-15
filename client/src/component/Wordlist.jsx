@@ -43,8 +43,8 @@ const Wordlist = ({ getWordId }) => {
                 <td>{doc.description}</td>
                 <td>{doc.translation}</td>
                 <td>
-                  {/* <Button onClick={(e) => getBookId(doc.id)}>edit</Button> */}
                   <Button onClick={(e) => deleteHandler(doc.id)}>delete</Button>
+                  <Button onClick={(e) => getWordId(doc.id)}>edit</Button>
                 </td>
                 <td>delete</td>
               </tr>
