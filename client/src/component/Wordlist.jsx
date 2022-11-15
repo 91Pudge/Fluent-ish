@@ -3,8 +3,8 @@ import { Button, Table } from "react-bootstrap";
 import WordDataService from "../WordServices";
 
 const Wordlist = ({ getWordId }) => {
-  const [word, setWord] = useState("");
-  console.log(word);
+  const [word, setWord] = useState([]);
+
   useEffect(() => {
     getWords();
   }, []);
@@ -12,15 +12,19 @@ const Wordlist = ({ getWordId }) => {
     const data = await WordDataService.getAllWords();
     setWord(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
+  const deleteHandler = async (id) => {
+    await WordDataService.deleteWord(id);
+    getWords();
+  };
 
   return (
-    <div className="p-4 m-auto table-responsive">
+    <div className=" m-auto table-responsive-sm">
       <div className="mb-2 ">
         <Button variant="dark edit" onClick={getWords}>
           Refresh List
         </Button>
       </div>
-      <Table className="" striped bordered hover size="sm">
+      <Table className="table" striped bordered hover>
         <thead>
           <tr>
             <th>#</th>
@@ -38,6 +42,11 @@ const Wordlist = ({ getWordId }) => {
                 <td>{doc.word}</td>
                 <td>{doc.description}</td>
                 <td>{doc.translation}</td>
+                <td>
+                  {/* <Button onClick={(e) => getBookId(doc.id)}>edit</Button> */}
+                  <Button onClick={(e) => deleteHandler(doc.id)}>delete</Button>
+                </td>
+                <td>delete</td>
               </tr>
             );
           })}
